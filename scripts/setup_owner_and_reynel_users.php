@@ -102,6 +102,30 @@ if (!$demo->exists) {
     echo "✓ Usuario demo ya existe: demo@bsolutions.dev [Plan Full]\n";
 }
 
+// 7. Sincronizar configuración de demo en .env si es necesario
+$envPath = __DIR__ . '/../.env';
+if (file_exists($envPath)) {
+    $envContent = file_get_contents($envPath);
+    $newContent = $envContent;
+
+    if (preg_match('/^DEMO_USER_EMAIL=.*/m', $newContent)) {
+        $newContent = preg_replace('/^DEMO_USER_EMAIL=.*/m', 'DEMO_USER_EMAIL=admin@bsolutions.dev', $newContent);
+    } else {
+        $newContent .= "\nDEMO_USER_EMAIL=admin@bsolutions.dev";
+    }
+
+    if (preg_match('/^DEMO_USER_EMAILS=.*/m', $newContent)) {
+        $newContent = preg_replace('/^DEMO_USER_EMAILS=.*/m', 'DEMO_USER_EMAILS=admin@bsolutions.dev,demo@bsolutions.dev', $newContent);
+    } else {
+        $newContent .= "\nDEMO_USER_EMAILS=admin@bsolutions.dev,demo@bsolutions.dev";
+    }
+
+    if ($newContent !== $envContent) {
+        file_put_contents($envPath, $newContent);
+        echo "✓ Archivo .env sincronizado con DEMO_USER_EMAIL=admin@bsolutions.dev\n";
+    }
+}
+
 echo "\n--- Resumen de usuarios activos en la base de datos ---\n";
 foreach (User::with('roles')->get() as $u) {
     echo "  • {$u->name} ({$u->email}) - Roles: " . $u->roles->pluck('name')->join(', ') . "\n";
