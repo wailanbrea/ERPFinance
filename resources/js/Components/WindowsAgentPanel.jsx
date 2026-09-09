@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { agentRequest, printerStorageKey, selectedPrinter, sendAgentCommand, setAgentToken } from '@/lib/windowsAgent';
 
-export default function WindowsAgentPanel({ user }) {
+export default function WindowsAgentPanel({ user, agenteToken }) {
     const [devices, setDevices] = useState(null);
     const [printer, setPrinter] = useState(() => selectedPrinter(user));
-    const [token, setToken] = useState('');
+    const [token, setToken] = useState(() => agenteToken || '');
     const [message, setMessage] = useState('');
     const [messageType, setMessageType] = useState('info'); // 'info' | 'success' | 'error' | 'warning'
     const [busy, setBusy] = useState(false);

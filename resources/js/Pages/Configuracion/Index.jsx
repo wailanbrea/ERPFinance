@@ -3,7 +3,7 @@ import { Head, router, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import WindowsAgentPanel from '@/Components/WindowsAgentPanel';
 
-export default function ConfiguracionIndex({ ajustes, claves }) {
+export default function ConfiguracionIndex({ ajustes, claves, agenteToken }) {
     const { auth } = usePage().props;
     const [form, setForm] = useState({});
 
@@ -20,7 +20,7 @@ export default function ConfiguracionIndex({ ajustes, claves }) {
             <Head title="Configuración" />
 
             <div className="max-w-3xl space-y-4">
-                <WindowsAgentPanel user={auth.user} />
+                <WindowsAgentPanel user={auth.user} agenteToken={agenteToken} />
                 <div>
                     <h1 className="text-xl font-semibold text-slate-900">Configuración</h1>
                     <p className="text-sm text-slate-600">Empresa, impuestos, intereses y mora (por sucursal).</p>

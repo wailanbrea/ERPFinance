@@ -239,16 +239,9 @@ Route::middleware(['auth', 'verified', 'erp_plan', 'empresa_licencia', 'demo_rea
     Route::put('/configuracion', [ConfiguracionController::class, 'update'])
         ->middleware('permission:configuracion.editar')
         ->name('configuracion.update');
-    Route::get('/configuracion/agente/descargar', function () {
-        $zipPath = public_path('downloads/BSM-POS-Agent.zip');
-        if (! file_exists($zipPath)) {
-            return redirect('https://github.com/wailanbrea/bsmpos-windows-agent');
-        }
-
-        return response()->download($zipPath, 'BSM-POS-Agent.zip', [
-            'Content-Type' => 'application/zip',
-        ]);
-    })->name('configuracion.agente.descargar');
+    Route::get('/configuracion/agente/descargar', [ConfiguracionController::class, 'descargarAgente'])
+        ->middleware('permission:configuracion.ver')
+        ->name('configuracion.agente.descargar');
 
     Route::prefix('superadmin')->middleware(['superadmin'])->group(function () {
         Route::get('/empresas', [SuperAdminEmpresasController::class, 'index'])->name('superadmin.empresas.index');
