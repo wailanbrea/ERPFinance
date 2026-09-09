@@ -109,8 +109,23 @@ class HandleInertiaRequests extends Middleware
             $modulosIncluidos[] = ['clave' => $clave, 'nombre' => $nombre];
         }
 
-        $demoEmail = (string) config('demo.user_email', '');
-        $isDemoUser = $user && $demoEmail !== '' && strcasecmp((string) $user->email, $demoEmail) === 0;
+        $demoEmails = (array) config('demo.user_emails', []);
+        if (empty($demoEmails)) {
+            $single = (string) config('demo.user_email', '');
+            if ($single !== '') {
+                $demoEmails = [$single];
+            }
+        }
+
+        $isDemoUser = false;
+        if ($user) {
+            foreach ($demoEmails as $email) {
+                if ($user->email && strcasecmp((string) $user->email, (string) $email) === 0) {
+                    $isDemoUser = true;
+                    break;
+                }
+            }
+        }
 
         $notificaciones = [
             'unreadCount' => 0,

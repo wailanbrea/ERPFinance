@@ -11,9 +11,15 @@ return [
 
     /**
      * Email del usuario demo existente.
-     * Recomendado: usar el usuario demo creado para la demo pública.
+     * Por defecto: admin@bsolutions.dev
      */
-    'user_email' => env('DEMO_USER_EMAIL', 'demo@bsolutions.dev'),
+    'user_email' => env('DEMO_USER_EMAIL', 'admin@bsolutions.dev'),
+
+    /**
+     * Lista de correos con comportamiento demo (solo lectura si DEMO_ENABLED=true).
+     * Por defecto incluye admin@bsolutions.dev y demo@bsolutions.dev.
+     */
+    'user_emails' => array_values(array_unique(array_filter(array_map('trim', explode(',', env('DEMO_USER_EMAILS', env('DEMO_USER_EMAIL', 'admin@bsolutions.dev') . ',demo@bsolutions.dev')))))),
 
     /**
      * Rol a asegurar en el usuario demo al entrar.

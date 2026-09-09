@@ -38,7 +38,7 @@ class DemoCompletoSeeder extends Seeder
             return;
         }
 
-        $admin = User::query()->where('email', 'admin@erp-bsolutions.local')->first();
+        $admin = User::query()->whereIn('email', ['admin@bsolutions.dev', 'admin@erp-bsolutions.local'])->first();
         if (!$admin) {
             return;
         }

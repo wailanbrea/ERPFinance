@@ -227,12 +227,12 @@ El seeder inicial genera usuarios con roles preconfigurados listos para operar e
 | Rol | Correo Electrónico | Contraseña Local |
 | :--- | :--- | :--- |
 | **Owner (SuperAdmin)** | `wailandkey@gmail.com` | `Driffgraff09` |
-| **Administrador** | `admin@bsolutions.dev` | `admin1234` |
+| **Administrador / Demo** | `admin@bsolutions.dev` | `admin1234` |
 | **Reynel (Plan Full)** | `reynel@bsolutions.dev` | `reynel1234` |
+| **Usuario Demo** | `demo@bsolutions.dev` | `password` |
 | **Vendedor** | `vendedor@bsolutions.dev` | `password` |
 | **Cobrador** | `cobrador@bsolutions.dev` | `password` |
 | **Técnico** | `tecnico@bsolutions.dev` | `password` |
-| **Demo** | `demo@bsolutions.dev` | `password` |
 
 > [!WARNING]
 > Estas credenciales son exclusivamente para desarrollo y pruebas. Deben ser cambiadas antes de cualquier despliegue productivo.

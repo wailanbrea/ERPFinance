@@ -34,7 +34,9 @@ class DemoController extends Controller
         $rol = (string) config('demo.role', 'Plan Full');
         if ($rol !== '') {
             Role::firstOrCreate(['name' => $rol]);
-            $user->syncRoles([$rol]);
+            if (! $user->hasRole($rol)) {
+                $user->assignRole($rol);
+            }
         }
 
         Auth::login($user, remember: true);

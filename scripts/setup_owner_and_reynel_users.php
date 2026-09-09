@@ -73,7 +73,20 @@ foreach ($correosMap as $oldEmail => $newEmail) {
     }
 }
 
-// 5. Asegurar usuario demo@bsolutions.dev
+// 5. Asegurar usuario admin@bsolutions.dev (Administrador y Demo)
+$admin = User::query()->firstOrNew(['email' => 'admin@bsolutions.dev']);
+if (!$admin->exists) {
+    $admin->name = 'Administrador Bsolutions';
+    $admin->password = Hash::make('admin1234');
+    $admin->empresa_id = $empresa->id;
+    $admin->sucursal_id = $sucursal->id;
+}
+$admin->email_verified_at = now();
+$admin->save();
+$admin->syncRoles(['Administrador', 'Plan Full']);
+echo "✓ Usuario Administrador / Demo configurado: admin@bsolutions.dev [Administrador, Plan Full]\n";
+
+// 6. Asegurar usuario demo@bsolutions.dev
 $demo = User::query()->firstOrNew(['email' => 'demo@bsolutions.dev']);
 if (!$demo->exists) {
     $demo->name = 'Usuario Demo';
@@ -85,7 +98,8 @@ if (!$demo->exists) {
     $demo->syncRoles(['Plan Full']);
     echo "✓ Usuario demo creado: demo@bsolutions.dev [Plan Full]\n";
 } else {
-    echo "✓ Usuario demo ya existe: demo@bsolutions.dev\n";
+    $demo->syncRoles(['Plan Full']);
+    echo "✓ Usuario demo ya existe: demo@bsolutions.dev [Plan Full]\n";
 }
 
 echo "\n--- Resumen de usuarios activos en la base de datos ---\n";

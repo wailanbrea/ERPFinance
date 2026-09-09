@@ -26,14 +26,15 @@ class DatabaseSeeder extends Seeder
             SmartTvDemoSeeder::class,
         ]);
 
-        $admin = User::query()->firstOrCreate(
-            ['email' => 'admin@erp-bsolutions.local'],
-            [
+        $admin = User::query()->whereIn('email', ['admin@bsolutions.dev', 'admin@erp-bsolutions.local'])->first();
+        if (! $admin) {
+            $admin = User::query()->create([
+                'email' => 'admin@bsolutions.dev',
                 'name' => 'Administrador Bsolutions',
                 'sucursal_id' => Sucursal::where('codigo', 'CENTRAL')->value('id'),
                 'password' => bcrypt('admin1234'),
-            ]
-        );
+            ]);
+        }
 
         $admin->assignRole('Administrador');
 

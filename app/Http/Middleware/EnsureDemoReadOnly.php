@@ -21,8 +21,21 @@ class EnsureDemoReadOnly
             return $next($request);
         }
 
-        $demoEmail = (string) config('demo.user_email', '');
-        $isDemo = $demoEmail !== '' && strcasecmp((string) $user->email, $demoEmail) === 0;
+        $demoEmails = (array) config('demo.user_emails', []);
+        if (empty($demoEmails)) {
+            $single = (string) config('demo.user_email', '');
+            if ($single !== '') {
+                $demoEmails = [$single];
+            }
+        }
+
+        $isDemo = false;
+        foreach ($demoEmails as $email) {
+            if ($user->email && strcasecmp((string) $user->email, (string) $email) === 0) {
+                $isDemo = true;
+                break;
+            }
+        }
 
         if (! $isDemo) {
             return $next($request);
