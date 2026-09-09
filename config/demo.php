@@ -13,7 +13,7 @@ return [
      * Email del usuario demo existente.
      * Recomendado: usar el usuario demo creado para la demo pública.
      */
-    'user_email' => env('DEMO_USER_EMAIL', 'demo@bsolutions.local'),
+    'user_email' => env('DEMO_USER_EMAIL', 'demo@bsolutions.dev'),
 
     /**
      * Rol a asegurar en el usuario demo al entrar.

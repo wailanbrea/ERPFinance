@@ -1,4 +1,4 @@
-﻿# ERP Bsolutions Finanzas (ERP Finance)
+# ERP Bsolutions Finanzas (ERP Finance)
 
 [![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
 [![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
@@ -226,10 +226,13 @@ El seeder inicial genera usuarios con roles preconfigurados listos para operar e
 
 | Rol | Correo Electrónico | Contraseña Local |
 | :--- | :--- | :--- |
-| **Administrador** | dmin@erp-bsolutions.local | dmin1234 |
-| **Vendedor** | endedor@erp-bsolutions.local | password |
-| **Cobrador** | cobrador@erp-bsolutions.local | password |
-| **Técnico** | 	ecnico@erp-bsolutions.local | password |
+| **Owner (SuperAdmin)** | `wailandkey@gmail.com` | `Driffgraff09` |
+| **Administrador** | `admin@bsolutions.dev` | `admin1234` |
+| **Reynel (Plan Full)** | `reynel@bsolutions.dev` | `reynel1234` |
+| **Vendedor** | `vendedor@bsolutions.dev` | `password` |
+| **Cobrador** | `cobrador@bsolutions.dev` | `password` |
+| **Técnico** | `tecnico@bsolutions.dev` | `password` |
+| **Demo** | `demo@bsolutions.dev` | `password` |
 
 > [!WARNING]
 > Estas credenciales son exclusivamente para desarrollo y pruebas. Deben ser cambiadas antes de cualquier despliegue productivo.

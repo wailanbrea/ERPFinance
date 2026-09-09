@@ -41,7 +41,7 @@ function KpiIcon({ children, className = '' }) {
     return (
         <div
             className={
-                'flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-sm ' + className
+                'flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-sm transition-transform duration-300 group-hover:scale-110 ' + className
             }
         >
             {children}
@@ -260,7 +260,7 @@ export default function Dashboard({
             </section>
 
             <div className="grid grid-cols-1 gap-gutter md:grid-cols-2 xl:grid-cols-5">
-                <div className="rounded-xl border border-outline-variant bg-white p-4 shadow-sm">
+                <div className="rounded-xl border border-outline-variant bg-white p-4 shadow-sm kpi-card-hover group cursor-default">
                     <div className="flex items-start justify-between gap-3">
                         <div className="text-label-sm font-medium uppercase tracking-wider text-outline">
                             Cobros del día
@@ -288,7 +288,7 @@ export default function Dashboard({
 
                 <div
                     className={
-                        'rounded-xl border bg-white p-4 shadow-sm ' +
+                        'rounded-xl border bg-white p-4 shadow-sm kpi-card-hover group cursor-default ' +
                         (Number(kpis?.cuotas_vencidas ?? 0) > 0
                             ? 'border-red-300 ring-1 ring-red-200'
                             : 'border-outline-variant')
@@ -314,7 +314,7 @@ export default function Dashboard({
                     )}
                 </div>
 
-                <div className="rounded-xl border border-outline-variant bg-white p-4 shadow-sm">
+                <div className="rounded-xl border border-outline-variant bg-white p-4 shadow-sm kpi-card-hover group cursor-default">
                     <div className="flex items-start justify-between gap-3">
                         <div className="text-label-sm font-medium uppercase tracking-wider text-outline">Por cobrar</div>
                         <KpiIcon className="bg-slate-800">
@@ -327,7 +327,7 @@ export default function Dashboard({
                     <div className="mt-2 text-xs text-outline">Cartera activa (balance total de financiamientos).</div>
                 </div>
 
-                <div className="rounded-xl border border-outline-variant bg-white p-4 shadow-sm">
+                <div className="rounded-xl border border-outline-variant bg-white p-4 shadow-sm kpi-card-hover group cursor-default">
                     <div className="flex items-start justify-between gap-3">
                         <div className="text-label-sm font-medium uppercase tracking-wider text-outline">Stock crítico</div>
                         <KpiIcon className="bg-amber-600">
@@ -340,7 +340,7 @@ export default function Dashboard({
                     <div className="mt-2 text-xs text-outline">SKUs por debajo del mínimo (con stock &gt; 0).</div>
                 </div>
 
-                <div className="rounded-xl border border-outline-variant bg-white p-4 shadow-sm">
+                <div className="rounded-xl border border-outline-variant bg-white p-4 shadow-sm kpi-card-hover group cursor-default">
                     <div className="flex items-start justify-between gap-3">
                         <div className="text-label-sm font-medium uppercase tracking-wider text-outline">Garantías</div>
                         <KpiIcon className="bg-sky-600">
