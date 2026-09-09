@@ -118,7 +118,7 @@ class HandleInertiaRequests extends Middleware
         }
 
         $isDemoUser = false;
-        if ($user) {
+        if ($user && config('demo.enabled', false)) {
             foreach ($demoEmails as $email) {
                 if ($user->email && strcasecmp((string) $user->email, (string) $email) === 0) {
                     $isDemoUser = true;

@@ -75,8 +75,9 @@ export default function VentasPos({ clientes, productos, almacenes }) {
         ]);
     };
 
-    const updateItem = (idx, key, value) => {
-        const next = data.items.map((it, i) => (i === idx ? { ...it, [key]: value } : it));
+    const updateItem = (idx, keyOrUpdates, value) => {
+        const updates = typeof keyOrUpdates === 'object' ? keyOrUpdates : { [keyOrUpdates]: value };
+        const next = data.items.map((it, i) => (i === idx ? { ...it, ...updates } : it));
         setData('items', next);
     };
 
@@ -238,21 +239,28 @@ export default function VentasPos({ clientes, productos, almacenes }) {
                         <div className="px-6 py-4 border-b border-outline-variant flex items-center justify-between">
                             <div className="font-bold text-on-surface">Carrito</div>
                             <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center">
-                                <form onSubmit={handleScanSubmit} className="flex items-center gap-2">
+                                <div className="flex items-center gap-2">
                                     <TextInput
                                         value={scan}
                                         onChange={(e) => setScan(e.target.value)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                e.preventDefault();
+                                                handleScanSubmit(e);
+                                            }
+                                        }}
                                         className="w-64"
                                         placeholder="Escanear código de barra / QR"
                                         disabled={lectorCfg?.activo === false}
                                     />
                                     <button
-                                        type="submit"
+                                        type="button"
+                                        onClick={handleScanSubmit}
                                         className="rounded-lg bg-primary-container px-3 py-2 text-xs font-bold text-white shadow-sm hover:bg-primary"
                                     >
                                         Agregar
                                     </button>
-                                </form>
+                                </div>
                                 <button
                                     type="button"
                                     onClick={addItem}
@@ -280,10 +288,10 @@ export default function VentasPos({ clientes, productos, almacenes }) {
                                                     onChange={(e) => {
                                                         const pid = e.target.value;
                                                         const prod = productos.find((p) => String(p.id) === String(pid));
-                                                        updateItem(idx, 'producto_id', pid);
-                                                        if (prod) {
-                                                            updateItem(idx, 'precio_unitario', precioPara(prod) ?? 0);
-                                                        }
+                                                        updateItem(idx, {
+                                                            producto_id: pid,
+                                                            precio_unitario: prod ? (precioPara(prod) ?? 0) : 0,
+                                                        });
                                                     }}
                                                     className="w-full rounded-md border-outline-variant shadow-sm focus:border-primary-container focus:ring-primary-container/20"
                                                 >
