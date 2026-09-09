@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#213145",
+                        "primary-container": "#1e3a8a",
+                        "on-secondary-container": "#00714d",
+                        "outline": "#757682",
+                        "surface-container": "#e5eeff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary": "#00236f",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00164e",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#2a1700",
+                        "tertiary-fixed": "#ffddb8",
+                        "tertiary": "#3e2400",
+                        "on-surface-variant": "#444651",
+                        "outline-variant": "#c5c5d3",
+                        "on-surface": "#0b1c30",
+                        "surface-bright": "#f8f9ff",
+                        "secondary": "#006c49",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-primary-container": "#90a8ff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-container": "#ef9900",
+                        "secondary-fixed": "#6ffbbe",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary-fixed-variant": "#264191",
+                        "on-secondary-fixed": "#002113",
+                        "surface-tint": "#4059aa",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#dce1ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-background": "#0b1c30",
+                        "inverse-primary": "#b6c4ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#5c3800",
+                        "background": "#f8f9ff",
+                        "secondary-container": "#6cf8bb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "container-padding": "24px",
+                        "gutter": "16px",
+                        "sidebar-width": "260px",
+                        "stack-gap": "12px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"], "table-data": ["Inter"], "h3": ["Inter"], "label-sm": ["Inter"], "body-lg": ["Inter"], "h1": ["Inter"], "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "table-data": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h3": ["20px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h1": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-[#1e3a8a] text-white shadow-xl border-r border-blue-800 flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-2xl font-bold text-white tracking-tighter">MotoHogar</h1>
+<p class="text-xs text-blue-200/70 font-sans tracking-wide">Finance ERP</p>
+</div>
+<nav class="flex-1 overflow-y-auto space-y-1">
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+<span class="font-sans text-sm tracking-wide">Dashboard</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="group">group</span>
+<span class="font-sans text-sm tracking-wide">Clientes</span>
+</a>
+<!-- Active Navigation: Productos -->
+<a class="flex items-center bg-white/10 text-white border-l-4 border-blue-400 py-3 px-4 font-semibold" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="inventory_2">inventory_2</span>
+<span class="font-sans text-sm tracking-wide">Productos</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="warehouse">warehouse</span>
+<span class="font-sans text-sm tracking-wide">Inventario</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="point_of_sale">point_of_sale</span>
+<span class="font-sans text-sm tracking-wide">Ventas</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="payments">payments</span>
+<span class="font-sans text-sm tracking-wide">Financiamiento</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-sans text-sm tracking-wide">Cobros</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="verified">verified</span>
+<span class="font-sans text-sm tracking-wide">Garantías</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="build">build</span>
+<span class="font-sans text-sm tracking-wide">Servicio Técnico</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="savings">savings</span>
+<span class="font-sans text-sm tracking-wide">Caja</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="receipt_long">receipt_long</span>
+<span class="font-sans text-sm tracking-wide">Gastos</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="analytics">analytics</span>
+<span class="font-sans text-sm tracking-wide">Reportes</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="person_manage">person</span>
+<span class="font-sans text-sm tracking-wide">Usuarios</span>
+</a>
+<a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-4 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="settings">settings</span>
+<span class="font-sans text-sm tracking-wide">Configuración</span>
+</a>
+</nav>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 left-0 ml-[260px] h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 shadow-sm z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container" placeholder="Buscar productos por SKU, nombre o marca..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 transition-colors rounded-full relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 transition-colors rounded-full">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 transition-colors rounded-full">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface">Admin User</p>
+<p class="text-[10px] text-slate-500">Super Admin</p>
+</div>
+<img alt="Administrative User Profile" class="w-10 h-10 rounded-full border border-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX9_ev4t5yeG4ljp9HFU9Mt5UhMDk9ljnu45HnpklIFtw_05miVhJRImJY6q1o5Dh4ynvd11nWAGmomkE1aGVLkBFMy_X7rR8G_SWkPrIKt9lx-fCznAAdXER8HVVqF0V3ejp1mybz75VpiVrvW0J9bjrRjY8Uf31Gw7C7xMJSyzuhBDVD1qUhh4W2g-JHYl84I8FOP25_y7aE4-Z1Q8XGE0GRAXIvRkHKGq_Gkz8f2SasNLo14TuwR8ITQjJF5kanTx3pfbT4Jw"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] pt-16 min-h-screen">
+<div class="p-6">
+<!-- Header Action Row -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-h1 text-h1 text-on-surface">Catálogo de Productos</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestiona y consulta el inventario disponible para financiamiento.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary-container text-white px-6 py-2.5 rounded-xl font-semibold shadow-md hover:bg-primary transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                    Agregar Producto
+                </button>
+</div>
+<div class="flex gap-6">
+<!-- Filters Sidebar -->
+<aside class="w-64 flex-shrink-0 space-y-6">
+<div class="bg-white p-5 rounded-xl border border-outline-variant/30 shadow-sm">
+<h3 class="font-h3 text-h3 text-primary mb-4">Filtros</h3>
+<!-- Categorías -->
+<div class="mb-6">
+<label class="font-label-sm text-label-sm uppercase text-slate-400 block mb-3">Categoría</label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface group-hover:text-primary transition-colors">Motos</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface group-hover:text-primary transition-colors">Electrodomésticos</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface group-hover:text-primary transition-colors">Smartphones</span>
+</label>
+</div>
+</div>
+<!-- Disponibilidad -->
+<div class="mb-6">
+<label class="font-label-sm text-label-sm uppercase text-slate-400 block mb-3">Disponibilidad</label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="border-outline-variant text-primary-container focus:ring-primary-container" name="stock" type="radio"/>
+<span class="text-body-md font-body-md text-on-surface group-hover:text-primary transition-colors">En Stock</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="border-outline-variant text-primary-container focus:ring-primary-container" name="stock" type="radio"/>
+<span class="text-body-md font-body-md text-on-surface group-hover:text-primary transition-colors">Agotado</span>
+</label>
+</div>
+</div>
+<!-- Rango de Precio -->
+<div>
+<label class="font-label-sm text-label-sm uppercase text-slate-400 block mb-3">Precio Financiado</label>
+<input class="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-primary-container" type="range"/>
+<div class="flex justify-between mt-2">
+<span class="text-xs text-slate-500">$0</span>
+<span class="text-xs text-slate-500">$5,000+</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-surface-container text-primary-container font-bold rounded-xl hover:bg-surface-variant transition-colors">
+                        Limpiar Filtros
+                    </button>
+</aside>
+<!-- Product Grid (Bento Style Layout) -->
+<div class="flex-1">
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Product Card 1 -->
+<div class="bg-white rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 bg-slate-100 overflow-hidden">
+<img alt="Motorbike Sport XT 250" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="professional photography of a sleek black and red sport motorcycle in a clean studio setting with soft rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNPZ4oLhtN0m0iVNQOj416_HJCnkESHJYaMVg2YZJt0fvHN1E2f9xqp3SL4vYBorjJnikJ1djz5eurHV_Po9UYwFYYNv229K43gbb_NYK6JK9Ra6vPzUx9nh2T6CPGg81klTeICQ00IV0FtTFeJx7U3-CBteCWjWDil5XRZqDav7AwxELfJOGtHogp-oj3EmoLbS4Pi02n7nRtGHD4CYBmDvgE3u09Jk1hckCD3BKY7Wpkhyta-w2rjqBKQQ98Ohz2UeQvKBzuMw"/>
+<span class="absolute top-3 left-3 bg-on-secondary-container text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Motos</span>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="text-xs font-bold text-primary mb-1">YAMAHA</p>
+<h3 class="font-h3 text-h3 text-on-surface line-clamp-1">Sport XT 250cc</h3>
+</div>
+<div class="bg-surface-container-low px-2 py-1 rounded">
+<p class="text-[10px] text-slate-500 uppercase font-bold">Stock</p>
+<p class="text-sm font-black text-on-surface">12 ud.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100">
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold mb-1">Precio Contado</p>
+<p class="text-lg font-bold text-on-surface">$3,450.00</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-primary uppercase font-bold mb-1">Precio Financiado</p>
+<p class="text-lg font-black text-primary-container">$4,200.00</p>
+</div>
+</div>
+<button class="w-full mt-5 py-2.5 bg-slate-50 text-on-surface-variant font-semibold rounded-lg hover:bg-primary-container hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+                                    Ver Detalles
+                                </button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-white rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 bg-slate-100 overflow-hidden">
+<img alt="Smartphone Ultra Pro Max" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="modern smartphone with large vibrant screen showing abstract colorful wallpaper on a minimalist reflective surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKVI4_MFv7m5h58EIvOIHclca16CfQZEOTce0nThK2gqKKz0vtPjarERjR9ZVA530JNgrRcIINqi1-eV85lz_zxferc37oWxZ8nWT27aJSulV8ukYR1m547O40-F7-LSHZbJkrcg9lffh8uueCQsnfrIANp61APMb7UvsZAoTfVS7nOCbNiMbj5LrHaqwEUA4uqrugjyWQHeUJ8PMoas3qxJ2dtVAvCQ3XiMYCqEldKe1Ppo0i-XrYAAGZuAdPVWh9q76SYLymvg"/>
+<span class="absolute top-3 left-3 bg-tertiary-container text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Smartphones</span>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="text-xs font-bold text-primary mb-1">SAMSUNG</p>
+<h3 class="font-h3 text-h3 text-on-surface line-clamp-1">Galaxy S24 Ultra</h3>
+</div>
+<div class="bg-surface-container-low px-2 py-1 rounded">
+<p class="text-[10px] text-slate-500 uppercase font-bold">Stock</p>
+<p class="text-sm font-black text-on-surface">45 ud.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100">
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold mb-1">Precio Contado</p>
+<p class="text-lg font-bold text-on-surface">$1,199.00</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-primary uppercase font-bold mb-1">Precio Financiado</p>
+<p class="text-lg font-black text-primary-container">$1,550.00</p>
+</div>
+</div>
+<button class="w-full mt-5 py-2.5 bg-slate-50 text-on-surface-variant font-semibold rounded-lg hover:bg-primary-container hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+                                    Ver Detalles
+                                </button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-white rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 bg-slate-100 overflow-hidden">
+<img alt="Smart TV 4K Ultra Slim" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="modern sleek smart TV on a contemporary wooden stand in a bright living room with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPzKAa-vq9KqgyT6GvUuKOwAqrVDZcMjDFUnR3ZbUPSf5NZPrV3XIOmMpRR_EEnjSiwNq6um09mMBgfISpgp96ry6wf6zh-CG7XUNTzccVMpkbr6H6ki0fpsiS5zqL0rC7Rihh0eScPC84gO65RCqrYUceqrvFyFIYpFMUcRuoVSSP2_Lf999ZSWzscIEepogdQbn19k18t1_c9pVvP0VsxR3Grtp1soNObVVIe2ca4mM6obZAb3Zjvc2iPo6ONHNuekGDU3GGgA"/>
+<span class="absolute top-3 left-3 bg-secondary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Electro</span>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="text-xs font-bold text-primary mb-1">LG</p>
+<h3 class="font-h3 text-h3 text-on-surface line-clamp-1">Smart TV 65" 4K UHD</h3>
+</div>
+<div class="bg-surface-container-low px-2 py-1 rounded">
+<p class="text-[10px] text-slate-500 uppercase font-bold">Stock</p>
+<p class="text-sm font-black text-on-surface">8 ud.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100">
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold mb-1">Precio Contado</p>
+<p class="text-lg font-bold text-on-surface">$850.00</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-primary uppercase font-bold mb-1">Precio Financiado</p>
+<p class="text-lg font-black text-primary-container">$1,120.00</p>
+</div>
+</div>
+<button class="w-full mt-5 py-2.5 bg-slate-50 text-on-surface-variant font-semibold rounded-lg hover:bg-primary-container hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+                                    Ver Detalles
+                                </button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-white rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 bg-slate-100 overflow-hidden">
+<img alt="Cruiser Moto Dark Edition" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="close-up of a dark matte finish cruiser motorcycle engine and frame with high contrast artistic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrjZSobbpD7AfLXkQlzJHyausZ9pP7hNQj4_Kpgb4mdDf0xxW9WiuN8KrwK0k_YFfo9DzKFG7btqqIdjHF98MvoJjy7fUuHUiolr2VcEmNB6fqbAh7KnoD9jDJDbgk4XwLFLYJkQt_-gouluRVT7Y6AObLLq2QblkGtRq9zsOov0uEsxF3dH2Dc2pozqF6AsRMr7MHOma-9a_WV7G5yuDkLVUMnI_JtT13fjj_ZUDcPJHh5uy80exLS_0sumpD3Wa8cBeC-qtcxg"/>
+<span class="absolute top-3 left-3 bg-on-secondary-container text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Motos</span>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="text-xs font-bold text-primary mb-1">HONDA</p>
+<h3 class="font-h3 text-h3 text-on-surface line-clamp-1">Cruiser Shadow 300</h3>
+</div>
+<div class="bg-surface-container-low px-2 py-1 rounded">
+<p class="text-[10px] text-slate-500 uppercase font-bold">Stock</p>
+<p class="text-sm font-black text-on-surface">5 ud.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100">
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold mb-1">Precio Contado</p>
+<p class="text-lg font-bold text-on-surface">$5,200.00</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-primary uppercase font-bold mb-1">Precio Financiado</p>
+<p class="text-lg font-black text-primary-container">$6,800.00</p>
+</div>
+</div>
+<button class="w-full mt-5 py-2.5 bg-slate-50 text-on-surface-variant font-semibold rounded-lg hover:bg-primary-container hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+                                    Ver Detalles
+                                </button>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="bg-white rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 bg-slate-100 overflow-hidden">
+<img alt="Double Door Refrigerator" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="large modern stainless steel double door refrigerator in a high-end kitchen with ambient interior light glowing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqk1HdWKQ3y_qFC9AnGkYoZCC_0-6lzMTKH9daiTid8pbm6H4MREIq-2i5ELw45KmLhKLwA-xFVrysqah85RQLXcPGoy9_tjgYb7CSgqM-s7qaeafzARmzjiArHa9Lp7hG6b_CSIoiFAVoSOcmj2EKSfCfWNOfTvmv-RPYRb91YoGB0-Cdd0PbmmoSsbY5fJfhVRAtLL_6cbDKo3sKyCwPOZ4NvBfHgFKLBzSRKjgawt46_Z2_JbTzSLhWYk5W-Eryi0odoNFcjw"/>
+<span class="absolute top-3 left-3 bg-secondary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Electro</span>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="text-xs font-bold text-primary mb-1">WHIRLPOOL</p>
+<h3 class="font-h3 text-h3 text-on-surface line-clamp-1">Nevera Side by Side 580L</h3>
+</div>
+<div class="bg-surface-container-low px-2 py-1 rounded">
+<p class="text-[10px] text-slate-500 uppercase font-bold">Stock</p>
+<p class="text-sm font-black text-on-surface">15 ud.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100">
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold mb-1">Precio Contado</p>
+<p class="text-lg font-bold text-on-surface">$1,450.00</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-primary uppercase font-bold mb-1">Precio Financiado</p>
+<p class="text-lg font-black text-primary-container">$1,890.00</p>
+</div>
+</div>
+<button class="w-full mt-5 py-2.5 bg-slate-50 text-on-surface-variant font-semibold rounded-lg hover:bg-primary-container hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+                                    Ver Detalles
+                                </button>
+</div>
+</div>
+<!-- Out of Stock Item -->
+<div class="bg-white rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden group opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
+<div class="relative h-48 bg-slate-100 overflow-hidden">
+<img alt="Gaming Laptop Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="top-down view of a high-performance gaming laptop with glowing RGB keyboard in a dark setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBosgWt9ms15K4DdnPqeVUF4waan9-NYHPylXrIWgz14M4UZoTQBzaFjXDBT8NgdlDOTOBNmA7eGX7ddx-lCD0_ybUH7tdRt-5uNtCpKD9aiKivGhfu8vCoItnOMLaRdcAtDC9NHYJ228_DZDVqanc4BsLEFUZKsczgBjanVRjVahgtT4RErmZrDoWaBG2TpQqPG2aVrR4kNX7Qw0oVGNBI3YA_lWmMHl36x7QJlGpxMecmxy6wA6PY8q7YE-qRucC3H00EIRdTcw"/>
+<div class="absolute inset-0 bg-slate-900/40 flex items-center justify-center">
+<span class="bg-error text-white text-xs font-bold px-4 py-2 rounded-full uppercase">Sin Stock</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="text-xs font-bold text-primary mb-1">ASUS</p>
+<h3 class="font-h3 text-h3 text-on-surface line-clamp-1">ROG Zephyrus G14</h3>
+</div>
+<div class="bg-error-container px-2 py-1 rounded">
+<p class="text-[10px] text-on-error-container uppercase font-bold">Stock</p>
+<p class="text-sm font-black text-on-error-container">0 ud.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100">
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold mb-1">Precio Contado</p>
+<p class="text-lg font-bold text-on-surface">$1,999.00</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-primary uppercase font-bold mb-1">Precio Financiado</p>
+<p class="text-lg font-black text-primary-container">$2,400.00</p>
+</div>
+</div>
+<button class="w-full mt-5 py-2.5 bg-slate-50 text-on-surface-variant font-semibold rounded-lg hover:bg-primary-container hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+                                    Gestionar
+                                </button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-slate-400 hover:bg-slate-50">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-container text-white font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface hover:bg-slate-50">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface hover:bg-slate-50">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface hover:bg-slate-50">12</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-slate-400 hover:bg-slate-50">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

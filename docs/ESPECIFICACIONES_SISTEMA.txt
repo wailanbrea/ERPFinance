@@ -1,0 +1,576 @@
+Sistema Web ERP para Venta de Electrodomésticos, Plásticos y Motores a Crédito
+
+Nombre sugerido:
+
+MotoHogar Finance ERP
+
+Sistema web administrativo para:
+
+ventas al contado
+ventas financiadas
+cobros semanales, quincenales y mensuales
+rutas de cobro
+inventario
+almacenes
+garantías
+servicio técnico
+caja
+gastos
+reportes
+usuarios / roles / permisos
+
+Tecnología:
+
+Laravel 12
+MySQL
+Inertia + React o Blade + Livewire
+Tailwind CSS
+Spatie Permission o sistema personalizado
+Apache Windows VPS
+
+Todo en español.
+
+1. Módulos del sistema
+Dashboard
+
+Mostrar:
+
+ventas del día
+cobros del día
+cuotas vencidas
+clientes morosos
+inventario bajo
+garantías activas
+caja del día
+ingresos / egresos
+productos más vendidos
+Clientes
+
+Campos:
+
+nombre
+apellido
+cédula / RNC
+teléfono
+WhatsApp
+dirección
+referencias
+estado
+ruta asignada
+cobrador asignado
+
+Historial:
+
+compras
+financiamientos
+pagos
+garantías
+reclamos
+Productos
+
+Campos:
+
+nombre
+descripción
+SKU
+código de barra
+QR
+categoría
+marca
+modelo
+serial
+costo
+precio contado
+precio financiado
+tiempo de garantía
+imagen
+estado
+Inventario
+
+Funciones:
+
+entrada de mercancía
+salida de mercancía
+transferencia
+ajuste
+kardex
+stock mínimo
+movimientos
+Almacenes
+
+Ejemplo:
+
+principal
+sucursal
+taller
+mercancía en tránsito
+Ventas
+
+Tipos:
+
+contado
+financiada
+apartado
+
+Factura:
+
+cliente
+productos
+seriales
+descuentos
+impuestos
+vendedor
+método de pago
+Financiamientos
+
+Debe manejar:
+
+monto
+inicial
+balance
+interés
+cuotas
+frecuencia:
+semanal
+quincenal
+mensual
+
+Estados:
+
+activo
+al día
+atrasado
+cancelado
+refinanciado
+incobrable
+Cobros
+
+Registrar:
+
+pago total
+pago parcial
+mora
+descuento
+promesa de pago
+no localizado
+no pagó
+Rutas de cobro
+
+Agrupar clientes por:
+
+día
+cobrador
+sector
+frecuencia
+
+Ejemplo:
+
+Ruta lunes
+Ruta martes
+Ruta cobrador Juan
+Ruta zona norte
+
+Garantías
+
+Registrar:
+
+garantía activa
+reclamo
+revisión
+aprobación
+rechazo
+solución
+Servicio técnico
+
+Manejar:
+
+recepción
+diagnóstico
+técnico
+piezas
+costo
+entrega
+Caja
+
+Funciones:
+
+apertura
+cierre
+ingresos
+egresos
+arqueo
+Gastos
+
+Registrar:
+
+alquiler
+nómina
+transporte
+combustible
+reparaciones
+servicios
+Reportes
+
+Generar:
+
+ventas
+cobros
+morosidad
+inventario
+caja
+garantías
+ganancias
+clientes
+Usuarios
+
+Administrar usuarios.
+
+Roles y permisos
+
+Administrar accesos.
+
+Configuración
+
+Empresa:
+
+nombre
+logo
+impuestos
+garantía
+numeración
+intereses
+mora
+2. Base de datos (Tablas)
+Seguridad
+usuarios
+roles
+menus
+permisos
+rol_menu_permisos
+Clientes
+clientes
+referencias_clientes
+direcciones_clientes
+Productos
+categorias
+marcas
+productos
+imagenes_productos
+Inventario
+almacenes
+stock_productos
+movimientos_inventario
+ajustes_inventario
+transferencias_inventario
+Compras
+proveedores
+compras
+detalle_compras
+Ventas
+ventas
+detalle_ventas
+Financiamiento
+financiamientos
+cuotas_financiamiento
+Cobros
+pagos
+promesas_pago
+Rutas
+rutas_cobro
+clientes_rutas
+Garantías
+garantias
+reclamos_garantia
+Servicio técnico
+ordenes_servicio
+detalle_servicio
+Caja
+cajas
+movimientos_caja
+cierres_caja
+Gastos
+gastos
+categorias_gastos
+Reportes / logs
+logs_sistema
+notificaciones
+Configuración
+configuracion_empresa
+3. Flujos del sistema
+Flujo de venta al contado
+Buscar cliente.
+Seleccionar productos.
+Validar stock.
+Aplicar descuento/impuesto.
+Registrar pago.
+Crear factura.
+Descontar inventario.
+Crear garantía.
+Flujo de venta financiada
+Buscar cliente.
+Seleccionar productos.
+Definir inicial.
+Definir cuotas.
+Definir interés.
+Generar financiamiento.
+Crear calendario.
+Crear factura.
+Descontar inventario.
+Crear garantía.
+Asignar ruta de cobro.
+Flujo de cobro
+Abrir ruta del día.
+Ver clientes pendientes.
+Cobrar.
+Registrar estado:
+cobrado
+parcial
+no pagó
+no localizado
+promesa
+Imprimir recibo.
+Actualizar balance.
+Flujo entrada de productos
+Ir a compras.
+Escanear código.
+Buscar producto.
+Si no existe → crear.
+Registrar cantidad.
+Registrar costo.
+Registrar proveedor.
+Registrar almacén.
+Aumentar stock.
+Flujo de garantía
+Buscar factura/producto.
+Registrar reclamo.
+Revisar garantía.
+Aprobar/rechazar.
+Enviar a servicio técnico.
+Resolver.
+Flujo de servicio técnico
+Recibir producto.
+Diagnóstico.
+Asignar técnico.
+Registrar piezas.
+Registrar costo.
+Entregar.
+Flujo de caja
+Abrir caja.
+Registrar movimientos.
+Cobros / ventas.
+Cierre.
+Arqueo.
+4. Roles y permisos
+
+Cada usuario podrá tener acceso por:
+
+Menú visible
+
+Ejemplo:
+
+✔ Clientes
+✔ Ventas
+✘ Reportes
+
+Acción permitida
+
+Ejemplo:
+
+Clientes:
+
+✔ Ver
+✔ Crear
+✔ Editar
+✘ Eliminar
+
+Permisos:
+
+ver
+crear
+editar
+eliminar
+imprimir
+exportar
+anular
+aprobar
+rechazar
+cerrar
+transferir
+ajustar
+
+El sistema debe:
+
+ocultar menús
+ocultar botones
+bloquear URLs
+5. Prompt para Cursor / Codex
+Crea un sistema web ERP profesional llamado MotoHogar Finance ERP usando Laravel 12, MySQL, Tailwind CSS e Inertia + React (o Blade + Livewire si es más eficiente).
+
+Todo el sistema debe estar completamente en español.
+
+Debe ser un sistema administrativo para vender electrodomésticos, plásticos y motores al contado o financiados.
+
+Módulos:
+
+Dashboard
+Clientes
+Productos
+Inventario
+Almacenes
+Compras
+Ventas
+Financiamientos
+Cobros
+Rutas de Cobro
+Garantías
+Servicio Técnico
+Caja
+Gastos
+Reportes
+Usuarios
+Roles y Permisos
+Configuración
+
+Debe incluir:
+
+Ventas al contado
+Ventas financiadas
+Cobros semanales/quincenales/mensuales
+Asignación automática o manual de rutas
+Entrada de mercancía por código de barra / QR
+Garantías
+Servicio técnico
+
+Base de datos MySQL en español.
+
+Tablas:
+
+usuarios
+roles
+menus
+permisos
+rol_menu_permisos
+clientes
+referencias_clientes
+direcciones_clientes
+categorias
+marcas
+productos
+imagenes_productos
+almacenes
+stock_productos
+movimientos_inventario
+ajustes_inventario
+transferencias_inventario
+proveedores
+compras
+detalle_compras
+ventas
+detalle_ventas
+financiamientos
+cuotas_financiamiento
+pagos
+promesas_pago
+rutas_cobro
+clientes_rutas
+garantias
+reclamos_garantia
+ordenes_servicio
+detalle_servicio
+cajas
+movimientos_caja
+cierres_caja
+gastos
+categorias_gastos
+logs_sistema
+notificaciones
+configuracion_empresa
+
+Implementar roles y permisos:
+
+- ocultar menús según rol
+- ocultar botones según permisos
+- bloquear acciones desde backend
+
+Permisos por menú:
+
+ver
+crear
+editar
+eliminar
+imprimir
+exportar
+anular
+aprobar
+rechazar
+cerrar
+transferir
+ajustar
+
+Debe tener arquitectura limpia:
+
+Controllers
+Services
+Repositories
+Policies
+Middleware
+Migrations
+Seeders
+Factories
+
+Debe ser responsive.
+Diseño limpio, moderno e intuitivo.
+6. Prompt para generar pantallas con IA
+Diseña todas las pantallas del sistema MotoHogar Finance ERP.
+
+Debe ser moderno, intuitivo, profesional, limpio y fácil de usar.
+
+Diseño tipo SaaS administrativo.
+
+Todo en español.
+
+Con sidebar izquierdo y topbar superior.
+
+Pantallas:
+
+Dashboard
+Clientes
+Productos
+Inventario
+Compras
+Ventas POS
+Financiamientos
+Cobros
+Rutas de Cobro
+Garantías
+Servicio Técnico
+Caja
+Gastos
+Reportes
+Usuarios
+Roles y Permisos
+Configuración
+
+Flujo lógico:
+
+Cliente → Venta → Financiamiento → Ruta → Cobro.
+
+Producto → Compra → Inventario → Venta.
+
+Venta → Garantía → Servicio Técnico.
+
+Diseño:
+
+moderno
+responsive
+minimalista
+profesional
+fácil de usar
+
+Colores elegantes.
+Tablas claras.
+Tarjetas limpias.
+Botones visibles.
+Formularios organizados.
+
+Con esto ya tienes el proyecto aterrizado para venderlo y desarrollarlo.

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MotoHogar Finance ERP - Punto de Venta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#213145",
+                        "primary-container": "#1e3a8a",
+                        "on-secondary-container": "#00714d",
+                        "outline": "#757682",
+                        "surface-container": "#e5eeff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary": "#00236f",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00164e",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#2a1700",
+                        "tertiary-fixed": "#ffddb8",
+                        "tertiary": "#3e2400",
+                        "on-surface-variant": "#444651",
+                        "outline-variant": "#c5c5d3",
+                        "on-surface": "#0b1c30",
+                        "surface-bright": "#f8f9ff",
+                        "secondary": "#006c49",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-primary-container": "#90a8ff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-container": "#ef9900",
+                        "secondary-fixed": "#6ffbbe",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary-fixed-variant": "#264191",
+                        "on-secondary-fixed": "#002113",
+                        "surface-tint": "#4059aa",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#dce1ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-background": "#0b1c30",
+                        "inverse-primary": "#b6c4ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#5c3800",
+                        "background": "#f8f9ff",
+                        "secondary-container": "#6cf8bb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "container-padding": "24px",
+                        "gutter": "16px",
+                        "sidebar-width": "260px",
+                        "stack-gap": "12px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "table-data": ["Inter"],
+                        "h3": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h1": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "table-data": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h3": ["20px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h1": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #f8fafc; }
+        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .custom-card { border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04); }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- SideNavBar (As specified in JSON) -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-[#1e3a8a] text-white shadow-xl border-r border-blue-800 flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-2xl font-bold text-white tracking-tighter">MotoHogar</h1>
+<p class="text-xs text-blue-200 uppercase tracking-widest opacity-70">Finance ERP</p>
+</div>
+<nav class="flex-1 overflow-y-auto sidebar-scroll">
+<ul class="space-y-1">
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">dashboard</span>Dashboard</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">group</span>Clientes</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">inventory_2</span>Productos</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">warehouse</span>Inventario</a></li>
+<!-- Active Navigation: Ventas (Point of Sale context) -->
+<li><a class="bg-white/10 text-white border-l-4 border-blue-400 py-3 px-6 font-semibold flex items-center" href="#"><span class="material-symbols-outlined mr-3">point_of_sale</span>Ventas</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">payments</span>Financiamiento</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">account_balance_wallet</span>Cobros</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">verified</span>Garantías</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">build</span>Servicio Técnico</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">savings</span>Caja</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">receipt_long</span>Gastos</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">analytics</span>Reportes</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">person</span>Usuarios</a></li>
+<li><a class="flex items-center text-blue-100/70 hover:bg-white/5 py-3 px-6 transition-all" href="#"><span class="material-symbols-outlined mr-3">settings</span>Configuración</a></li>
+</ul>
+</nav>
+<div class="px-6 mt-6 pt-6 border-t border-blue-800">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center text-primary font-bold">JD</div>
+<div>
+<p class="text-sm font-semibold">Juan Delgado</p>
+<p class="text-xs text-blue-300">Admin Central</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-[260px] flex flex-col min-h-screen">
+<!-- TopNavBar (As specified in JSON) -->
+<header class="flex justify-between items-center px-6 h-16 w-full bg-white shadow-sm border-b border-slate-200 sticky top-0 z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-slate-50 border border-slate-200 rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent" placeholder="Buscar transacción, cliente o ayuda..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-px bg-slate-200 mx-2"></div>
+<img alt="Administrative User Profile" class="w-8 h-8 rounded-full border border-slate-200 object-cover" data-alt="Professional administrative user wearing a suit in a bright corporate office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Uk-rqszG02BeW97lLG0xQ19QI3Fz8jSl8cOClV-Ye85dcGEH_UWlVIj6mbU05Wwrg1rl_-7fE4rgDqt1SHoKeHR78Xly5sfNQ4hbUd3BS75kAYG1c-acAOrip1t7c5WOCNCNAD_wecOIE4sx3aDDA57pXtQAtMlirTSeufmu2hoKbNE2qFp6PCKr2COzTnrxbTzTqFKvTzEHQA6v1TW460zCZdNr95HyAWBfoQSTDxT382v6oPujTtXq0dWifv26Es2GtgRMXw"/>
+</div>
+</header>
+<!-- POS Canvas Area -->
+<div class="p-6 grid grid-cols-12 gap-6 flex-1 overflow-hidden">
+<!-- Left Side: Product Selection & Search (Bento Layout) -->
+<div class="col-span-8 flex flex-col gap-6">
+<!-- Search Section -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white p-4 rounded-xl custom-card flex flex-col gap-3">
+<label class="text-label-sm text-slate-500 uppercase tracking-wider">Cliente</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary-container">person_search</span>
+<input class="w-full border-slate-200 rounded-lg py-2.5 pl-10 pr-4 text-sm focus:ring-primary focus:border-primary" placeholder="Buscar por Nombre, Cédula o RNC" type="text"/>
+</div>
+<div class="flex items-center gap-2 text-xs text-secondary font-medium">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+<button>Registrar nuevo cliente</button>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl custom-card flex flex-col gap-3">
+<label class="text-label-sm text-slate-500 uppercase tracking-wider">Producto</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary-container">barcode_scanner</span>
+<input class="w-full border-slate-200 rounded-lg py-2.5 pl-10 pr-4 text-sm focus:ring-primary focus:border-primary" placeholder="Código de barras, Modelo o SKU" type="text"/>
+</div>
+<div class="flex items-center gap-2 text-xs text-primary font-medium">
+<span class="material-symbols-outlined text-sm">inventory</span>
+<button>Ver catálogo completo</button>
+</div>
+</div>
+</div>
+<!-- Shopping Cart List -->
+<div class="bg-white rounded-xl custom-card flex-1 flex flex-col overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+<h2 class="font-h3 text-primary">Carrito de Ventas</h2>
+<span class="bg-primary-container text-white text-xs font-bold px-2.5 py-1 rounded-full">3 Ítems</span>
+</div>
+<div class="flex-1 overflow-y-auto">
+<table class="w-full text-left">
+<thead class="sticky top-0 bg-white shadow-sm">
+<tr class="text-label-sm text-slate-500 border-b border-slate-100">
+<th class="px-6 py-4 uppercase font-semibold">Producto</th>
+<th class="px-4 py-4 uppercase font-semibold text-center">Cant.</th>
+<th class="px-4 py-4 uppercase font-semibold text-right">Precio Unit.</th>
+<th class="px-4 py-4 uppercase font-semibold text-right">ITBIS (18%)</th>
+<th class="px-6 py-4 uppercase font-semibold text-right">Total</th>
+<th class="px-4 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-slate-100 flex-shrink-0 flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="Side profile of a modern black and red sport motorcycle on a neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDemb3XNNgFjDwEuFrrlq-Zj4NXV1K_nXeoL3UFZxqOmYyWliezAzc2c8RuvsCUIwQJ7OZLGNm978qA_O1W7u3M9gNYEz7FyQ9NtS23B4nDSz_40aQY3zPjQYXONmIzro6j452PU82YCeVtUCZuuUJWR7RovEv3o8QTvEAeGH4ak_VAM1ws4A6LgNC76gihuD1e22sBOuJw3-CCCLU8K2_M-I3oIRGpXfaVkoTqcHJJstCCML0VO3uDS_vE_X36O6IpmVkO0eMn3g"/>
+</div>
+<div>
+<p class="font-semibold text-slate-800">Yamaha MT-03 2024</p>
+<p class="text-xs text-slate-500">SKU: MOT-YA-034</p>
+</div>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex items-center justify-center gap-2">
+<button class="w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100">-</button>
+<span class="font-medium text-sm w-4 text-center">1</span>
+<button class="w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100">+</button>
+</div>
+</td>
+<td class="px-4 py-4 text-right font-table-data text-slate-600">RD$ 245,000.00</td>
+<td class="px-4 py-4 text-right font-table-data text-slate-600">RD$ 44,100.00</td>
+<td class="px-6 py-4 text-right font-bold text-primary">RD$ 289,100.00</td>
+<td class="px-4 py-4 text-right">
+<button class="text-error/40 hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-slate-100 flex-shrink-0 flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="Professional grade full-face motorcycle helmet in matte grey finish with visor down" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJkmPOUjiBI9AN_x5TS9rftk4inpTdgr10V8hoFiexRIJU0OyAliYYZrEzAQvWJmBd-8Ni3BoDmC2WmLIa1e7riII45aNC_JMorj6gDCm4-6kHD0sKT181sMjMeg7PtX2awaHj-GTL8jv5_h1i5T76Tw4k8hdk7z_gJBnyTsJjYdKBU05rzNM8LPOTWA1mwBrbzAFvdltzJkQybuim4nUapmsXoGTy_VmKsuBALgcYycqFJUlbvtaUdt6hSFrLrpbi8DXtQXpkjw"/>
+</div>
+<div>
+<p class="font-semibold text-slate-800">Casco LS2 Full Face</p>
+<p class="text-xs text-slate-500">SKU: ACC-LS2-XL</p>
+</div>
+</div>
+</td>
+<td class="px-4 py-4 text-center">
+<div class="flex items-center justify-center gap-2">
+<button class="w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100">-</button>
+<span class="font-medium text-sm w-4 text-center">2</span>
+<button class="w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100">+</button>
+</div>
+</td>
+<td class="px-4 py-4 text-right font-table-data text-slate-600">RD$ 8,500.00</td>
+<td class="px-4 py-4 text-right font-table-data text-slate-600">RD$ 3,060.00</td>
+<td class="px-6 py-4 text-right font-bold text-primary">RD$ 20,060.00</td>
+<td class="px-4 py-4 text-right">
+<button class="text-error/40 hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-slate-100 flex-shrink-0 flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="Heavy duty steel chain lock for motorcycles on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC42ZCgl4VqbLvFJtOImukMZTac7m1or1rBeICgkQUct8iz36VfkU3lxITNX4jcaaosJKqc_BDJuoE-oSpYk3BOH51aTejGJVLRAkoiQ-0q8aRFOX1EehBiytXlJcCsMm0Cswxxp9wYrsARYwR70Q3xlFN1U4Yukj6QPjfzyztyExwGFiWpfnlPjQrLxuAr6GNBw_fjvL6byHvYz-JRS0a_tDimAZ58iPzuRJq20g8l3QRppik_zKa4z9damdxwcbgU0QWjNrCrNg"/>
+</div>
+<div>
+<p class="font-semibold text-slate-800">Cadena de Seguridad Reforzada</p>
+<p class="text-xs text-slate-500">SKU: ACC-LOCK-ST</p>
+</div>
+</div>
+</td>
+<td class="px-4 py-4 text-center">
+<div class="flex items-center justify-center gap-2">
+<button class="w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100">-</button>
+<span class="font-medium text-sm w-4 text-center">1</span>
+<button class="w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100">+</button>
+</div>
+</td>
+<td class="px-4 py-4 text-right font-table-data text-slate-600">RD$ 3,200.00</td>
+<td class="px-4 py-4 text-right font-table-data text-slate-600">RD$ 576.00</td>
+<td class="px-6 py-4 text-right font-bold text-primary">RD$ 3,776.00</td>
+<td class="px-4 py-4 text-right">
+<button class="text-error/40 hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Empty space for layout balance -->
+<div class="bg-slate-50 h-12 flex items-center px-6">
+<button class="text-sm font-medium text-primary flex items-center gap-2 hover:underline">
+<span class="material-symbols-outlined text-base">add</span>
+                            Agregar Nota de Venta
+                        </button>
+</div>
+</div>
+</div>
+<!-- Right Side: Totals & Checkout -->
+<div class="col-span-4 flex flex-col gap-6">
+<!-- Payment Method Toggle -->
+<div class="bg-white p-5 rounded-xl custom-card">
+<h3 class="text-label-sm text-slate-500 uppercase tracking-wider mb-4">Método de Pago</h3>
+<div class="grid grid-cols-3 gap-2">
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border-2 border-primary-container bg-surface-container-low text-primary transition-all">
+<span class="material-symbols-outlined mb-1">payments</span>
+<span class="text-[11px] font-bold uppercase">Contado</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border-2 border-slate-100 bg-white text-slate-500 hover:bg-slate-50 transition-all">
+<span class="material-symbols-outlined mb-1">credit_score</span>
+<span class="text-[11px] font-bold uppercase">Financiado</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border-2 border-slate-100 bg-white text-slate-500 hover:bg-slate-50 transition-all">
+<span class="material-symbols-outlined mb-1">calendar_today</span>
+<span class="text-[11px] font-bold uppercase">Apartado</span>
+</button>
+</div>
+</div>
+<!-- Totals Breakdown -->
+<div class="bg-white p-6 rounded-xl custom-card flex-1 flex flex-col">
+<h3 class="font-h3 text-primary mb-6">Resumen de Cuenta</h3>
+<div class="space-y-4 flex-1">
+<div class="flex justify-between text-body-md text-slate-600">
+<span>Subtotal Bruto</span>
+<span class="font-medium">RD$ 265,200.00</span>
+</div>
+<div class="flex justify-between text-body-md text-slate-600">
+<span>Descuento aplicado (0%)</span>
+<span class="font-medium">RD$ 0.00</span>
+</div>
+<div class="flex justify-between text-body-md text-slate-600">
+<span>ITBIS (18%)</span>
+<span class="font-medium">RD$ 47,736.00</span>
+</div>
+<div class="pt-4 border-t border-dashed border-slate-200">
+<div class="flex justify-between items-center">
+<span class="font-bold text-slate-500 text-lg">TOTAL A PAGAR</span>
+<div class="text-right">
+<span class="block text-[32px] font-black text-primary leading-none">RD$ 312,936.00</span>
+<span class="text-xs text-slate-400 font-medium tracking-tight">Dolares Est: $5,326.57</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-8 space-y-3">
+<button class="w-full py-4 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-primary/20 hover:bg-blue-900 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+                            GENERAR FACTURA
+                        </button>
+<div class="grid grid-cols-2 gap-3">
+<button class="py-3 border-2 border-slate-200 text-slate-700 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-50 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">print</span>
+                                IMPRIMIR
+                            </button>
+<button class="py-3 border-2 border-slate-200 text-slate-700 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-50 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">mail</span>
+                                ENVIAR
+                            </button>
+</div>
+<button class="w-full py-2.5 text-error font-semibold text-sm hover:bg-error-container/20 rounded-lg transition-colors">
+                            CANCELAR OPERACIÓN
+                        </button>
+</div>
+</div>
+<!-- Shortcuts Widget -->
+<div class="bg-surface-container p-4 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-white rounded-lg">
+<span class="material-symbols-outlined text-primary">keyboard</span>
+</div>
+<p class="text-xs text-primary font-medium leading-tight">Atajos de teclado <br/><span class="text-slate-500">F2: Pago • F4: Buscar</span></p>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Quick Action (Contextual: POS) -->
+<button class="fixed bottom-6 right-6 w-14 h-14 bg-secondary text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-on-secondary-container transition-transform active:scale-90 z-50">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</body></html>

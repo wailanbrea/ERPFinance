@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1F3A"/>
+      <stop offset="1" stop-color="#1E3A8A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="120" y="120" width="960" height="560" rx="32" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.20)" stroke-width="2"/>
+  <g fill="rgba(255,255,255,0.85)" font-family="Inter, Arial, sans-serif">
+    <text x="160" y="240" font-size="38" font-weight="800">ERP Bsolutions Finanzas</text>
+    <text x="160" y="300" font-size="26" font-weight="600" fill="rgba(255,255,255,0.75)">Imagen demo de producto</text>
+    <text x="160" y="380" font-size="18" fill="rgba(255,255,255,0.70)">Usada para poblar productos con foto sin hardcode en UI.</text>
+  </g>
+  <g fill="rgba(255,255,255,0.16)">
+    <circle cx="940" cy="480" r="120"/>
+    <circle cx="820" cy="520" r="70"/>
+    <circle cx="1010" cy="560" r="55"/>
+  </g>
+</svg>
