@@ -28,10 +28,15 @@ export async function agentRequest(path, { method = 'GET', body, timeoutMs = 100
         const timer = setTimeout(() => controller.abort(), timeoutMs);
         let response;
         try {
-            response = await fetch(`${bases[i]}${path}`, {
+            const fetchOpts = {
                 method, headers, body: body ? JSON.stringify(body) : undefined,
-                signal: controller.signal, cache: 'no-store', credentials: 'omit', redirect: 'error', targetAddressSpace: 'loopback',
-            });
+                signal: controller.signal, cache: 'no-store', credentials: 'omit', redirect: 'error',
+            };
+            try {
+                response = await fetch(`${bases[i]}${path}`, { ...fetchOpts, targetAddressSpace: 'loopback' });
+            } catch {
+                response = await fetch(`${bases[i]}${path}`, fetchOpts);
+            }
             activeBase = bases[i];
             const data = await response.json();
             if (!response.ok) {

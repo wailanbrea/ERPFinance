@@ -156,10 +156,39 @@ export default function WindowsAgentPanel({ user }) {
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <strong>Conecta y vincula la impresora:</strong> Una vez iniciado el agente, pulsa el botón <strong>«Conectar y buscar dispositivos»</strong> abajo. El sistema detectará las impresoras instaladas en tu Windows para que selecciones tu impresora de tickets.
-                            </li>
                         </ol>
+                    </div>
+
+                    {/* Alerta de permisos de Chrome/Edge si está en HTTPS */}
+                    <div className="rounded-lg bg-amber-50/90 border border-amber-200 p-3 text-xs text-amber-900 space-y-1.5">
+                        <div className="flex items-center gap-1.5 font-semibold text-amber-950">
+                            <svg className="w-4 h-4 text-amber-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <span>Paso clave en Chrome / Edge para permitir conexión local:</span>
+                        </div>
+                        <p className="leading-relaxed">
+                            Al estar navegando en un sitio seguro (HTTPS), los navegadores bloquean por defecto la comunicación con programas en tu propia máquina (127.0.0.1:8765) como protección. Para habilitarlo:
+                        </p>
+                        <ol className="list-decimal list-inside space-y-1 ms-1 text-amber-900 font-medium">
+                            <li>Haz clic en el ícono de candado o controles 🔒 a la izquierda de la dirección web arriba (al lado de <code className="bg-amber-100 px-1 py-0.5 rounded">erpfinance.bsolutions.dev</code>).</li>
+                            <li>Selecciona <strong>«Configuración del sitio»</strong> (Site settings).</li>
+                            <li>Busca <strong>«Contenido no seguro»</strong> (o <em>Dispositivos en la red local</em>) y cámbialo a <strong>«Permitir»</strong>.</li>
+                            <li>Regresa a esta pestaña, recarga la página y pulsa <strong>«Conectar y buscar dispositivos»</strong>.</li>
+                        </ol>
+                        <div className="pt-1 flex items-center gap-2">
+                            <a
+                                href="http://127.0.0.1:8765/api/status"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-amber-800 underline font-semibold hover:text-amber-950 inline-flex items-center gap-1"
+                            >
+                                Probar si el agente responde en tu navegador (http://127.0.0.1:8765/api/status)
+                                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             )}
