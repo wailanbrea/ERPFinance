@@ -111,20 +111,28 @@ class HandleInertiaRequests extends Middleware
 
         $demoEmails = (array) config('demo.user_emails', []);
         if (empty($demoEmails)) {
-            $single = (string) config('demo.user_email', '');
+            $single = (string) config('demo.user_email', 'demo@bsolutions.dev');
             if ($single !== '') {
                 $demoEmails = [$single];
             }
         }
 
         $isDemoUser = false;
-        if ($user && config('demo.enabled', false)) {
+        if ($user) {
             foreach ($demoEmails as $email) {
                 if ($user->email && strcasecmp((string) $user->email, (string) $email) === 0) {
                     $isDemoUser = true;
                     break;
                 }
             }
+        }
+
+        if ($user && $isDemoUser) {
+            $permisosLista = $permisosLista->filter(function (string $name) {
+                $parts = explode('.', $name);
+                $action = end($parts);
+                return in_array($action, ['ver', 'imprimir', 'exportar', 'index', 'show'], true);
+            })->values();
         }
 
         $notificaciones = [

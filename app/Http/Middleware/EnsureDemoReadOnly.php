@@ -17,7 +17,7 @@ class EnsureDemoReadOnly
     {
         $user = $request->user();
 
-        if (! $user || ! config('demo.enabled', false)) {
+        if (! $user) {
             return $next($request);
         }
 

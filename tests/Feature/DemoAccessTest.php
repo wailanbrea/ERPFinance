@@ -118,4 +118,34 @@ class DemoAccessTest extends TestCase
 
         $this->assertNotEquals(403, $response->getStatusCode());
     }
+
+    public function test_demo_user_only_receives_read_permissions_in_inertia(): void
+    {
+        Config::set('demo.enabled', true);
+        Config::set('demo.user_email', 'demo@bsolutions.dev');
+        Config::set('demo.user_emails', ['demo@bsolutions.dev']);
+
+        [$empresa, $sucursal] = $this->createEmpresaYsucursal();
+
+        $demoUser = User::factory()->create([
+            'email' => 'demo@bsolutions.dev',
+            'empresa_id' => $empresa->id,
+            'sucursal_id' => $sucursal->id,
+        ]);
+        $readPerm = \Spatie\Permission\Models\Permission::firstOrCreate(['name' => 'notificaciones.ver']);
+        $writePerm = \Spatie\Permission\Models\Permission::firstOrCreate(['name' => 'notificaciones.editar']);
+        $demoUser->givePermissionTo([$readPerm, $writePerm]);
+
+        $response = $this->actingAs($demoUser)->get('/dashboard');
+
+        $response->assertOk();
+        $permisos = $response->viewData('page')['props']['auth']['permisos'] ?? [];
+        $this->assertNotEmpty($permisos);
+        foreach ($permisos as $perm) {
+            $parts = explode('.', $perm);
+            $action = end($parts);
+            $this->assertContains($action, ['ver', 'imprimir', 'exportar', 'index', 'show']);
+        }
+    }
 }
+
