@@ -100,6 +100,10 @@ class VentaController extends Controller
             'items.*.precio_unitario' => ['required', 'numeric', 'min:0'],
         ]);
 
+        if (in_array($data['tipo'], ['financiada', 'apartado'], true) && empty($data['cliente_id'])) {
+            abort(422, 'Debes seleccionar un cliente para ventas ' . ($data['tipo'] === 'apartado' ? 'en apartado.' : 'financiadas.'));
+        }
+
         if (($data['tipo'] ?? '') === 'financiada' && ! $user->can('financiamientos.ver')) {
             abort(403, 'El plan actual no incluye ventas financiadas. Usa contado o apartado, o asigna un rol con acceso a financiamientos (Plan Full).');
         }
@@ -220,6 +224,27 @@ class VentaController extends Controller
                     (int) ($data['cuotas'] ?? 12),
                     (string) ($data['frecuencia'] ?? 'mensual'),
                     Carbon::parse($data['fecha'])
+                );
+            }
+
+            if ($data['tipo'] === 'apartado') {
+                $clienteId = (int) ($data['cliente_id'] ?? 0);
+                if (!$clienteId) {
+                    abort(422, 'Para apartado, debes seleccionar un cliente.');
+                }
+
+                $apartados = app(\App\Services\ApartadoService::class);
+                $apartados->crearDesdeVenta(
+                    $user->sucursal_id,
+                    $venta->id,
+                    $clienteId,
+                    $user->id,
+                    (float) $total,
+                    (float) ($data['inicial'] ?? 0),
+                    (int) ($data['cuotas'] ?? 4),
+                    Carbon::parse($data['fecha']),
+                    (string) ($data['metodo_pago'] ?? 'efectivo'),
+                    $data['nota'] ?? null
                 );
             }
         });

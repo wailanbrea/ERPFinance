@@ -100,6 +100,12 @@ export default function SidebarNavIcon({ name, className = 'h-5 w-5 shrink-0' })
                     <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6.5L8 4 4 8l2.5 2.5M13.5 17.5L16 20l4-4-2.5-2.5M8 16l-3 3M16 8l3-3M9 9l6 6" />
                 </svg>
             );
+        case 'apartados':
+            return (
+                <svg {...common}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+            );
         case 'caja':
             return (
                 <svg {...common}>

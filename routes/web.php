@@ -9,6 +9,7 @@ use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\ApartadoController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\BusquedaController;
 use App\Http\Controllers\CobroController;
@@ -135,6 +136,18 @@ Route::middleware(['auth', 'verified', 'erp_plan', 'empresa_licencia', 'demo_rea
     Route::post('/ventas', [VentaController::class, 'store'])
         ->middleware('permission:ventas.crear')
         ->name('ventas.store');
+
+    Route::get('/apartados', [ApartadoController::class, 'index'])
+        ->middleware('permission:ventas.ver')
+        ->name('apartados.index');
+
+    Route::post('/apartados/{apartado}/abonar', [ApartadoController::class, 'abonar'])
+        ->middleware('permission:ventas.crear')
+        ->name('apartados.abonar');
+
+    Route::post('/apartados/{apartado}/cancelar', [ApartadoController::class, 'cancelar'])
+        ->middleware('permission:ventas.crear')
+        ->name('apartados.cancelar');
 
     Route::get('/busqueda', [BusquedaController::class, 'index'])
         ->middleware('permission:clientes.ver|productos.ver|financiamientos.ver')

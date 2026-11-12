@@ -99,10 +99,15 @@ export default function VentasPos({ clientes, productos, almacenes }) {
 
     const submit = (e) => {
         e.preventDefault();
+        if (data.tipo === 'apartado' && !data.cliente_id) {
+            alert('Por favor selecciona el cliente que realiza el apartado.');
+            return;
+        }
         const payload = {
             ...data,
             modalidad: 'detalle',
             monto_pagado: data.tipo === 'contado' ? (Number(data.monto_pagado) || total) : 0,
+            cuotas: data.tipo === 'apartado' ? (Number(data.cuotas) || 4) : data.cuotas,
         };
         post(route('ventas.store'), payload);
     };
@@ -433,6 +438,56 @@ export default function VentasPos({ clientes, productos, almacenes }) {
                                         <option value="quincenal">Quincenal</option>
                                         <option value="mensual">Mensual</option>
                                     </select>
+                                </div>
+                            </div>
+                        ) : null}
+
+                        {data.tipo === 'apartado' ? (
+                            <div className="grid grid-cols-1 gap-3">
+                                <div>
+                                    <InputLabel htmlFor="inicial" value="Abono inicial (RD$)" />
+                                    <TextInput
+                                        id="inicial"
+                                        type="number"
+                                        value={data.inicial}
+                                        onChange={(e) => setData('inicial', e.target.value)}
+                                        className="mt-1 block w-full"
+                                        placeholder="0.00"
+                                    />
+                                    <p className="mt-1 text-xs text-on-surface-variant">
+                                        Saldo restante: RD$ {Math.max(0, total - Number(data.inicial || 0)).toFixed(2)}
+                                    </p>
+                                </div>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <InputLabel htmlFor="cuotas" value="Cuotas semanales" />
+                                        <TextInput
+                                            id="cuotas"
+                                            type="number"
+                                            value={data.cuotas}
+                                            onChange={(e) => setData('cuotas', e.target.value)}
+                                            className="mt-1 block w-full"
+                                            min="1"
+                                            max="24"
+                                        />
+                                    </div>
+                                    <div>
+                                        <InputLabel htmlFor="metodo_pago" value="Método de pago" />
+                                        <select
+                                            id="metodo_pago"
+                                            value={data.metodo_pago}
+                                            onChange={(e) => setData('metodo_pago', e.target.value)}
+                                            className="mt-1 block w-full rounded-md border-outline-variant shadow-sm focus:border-primary-container focus:ring-primary-container/20 text-sm"
+                                        >
+                                            <option value="efectivo">Efectivo</option>
+                                            <option value="transferencia">Transferencia</option>
+                                            <option value="tarjeta">Tarjeta</option>
+                                            <option value="deposito">Depósito</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="rounded-lg bg-blue-50 border border-blue-200 p-3 text-xs text-blue-900">
+                                    Los productos seleccionados se reservarán de inmediato y se descontarán del inventario.
                                 </div>
                             </div>
                         ) : null}

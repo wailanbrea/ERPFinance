@@ -86,16 +86,38 @@ export default function FacturasIndex({ ventas, filtros }) {
                                         </td>
                                         <td className="px-6 py-4 text-right text-sm font-semibold text-on-surface">{money(v.total)}</td>
                                         <td className="px-6 py-4 text-right">
-                                            <a
-                                                href={route('facturas.pdf', v.id)}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                onClick={(e) => e.stopPropagation()}
-                                                className="rounded-lg border border-outline-variant bg-white px-3 py-1.5 text-xs font-semibold text-on-surface hover:bg-surface-container-low"
-                                            >
-                                                Ver PDF
-                                            </a>
-                                            <PrintWindowsTicket ventaId={v.id} />
+                                            <div className="flex items-center justify-end gap-1.5 flex-wrap">
+                                                {(() => {
+                                                    const rawPhone = v.cliente?.whatsapp || v.cliente?.telefono || '';
+                                                    const cleanPhone = String(rawPhone).replace(/\D/g, '');
+                                                    const pdfUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/facturas/${v.id}/pdf`;
+                                                    const msg = encodeURIComponent(
+                                                        `Hola ${v.cliente?.nombre ?? 'Cliente'}, le enviamos su factura ${v.numero_factura ?? '#' + v.id} por un monto de RD$ ${Number(v.total).toLocaleString('es-DO', { minimumFractionDigits: 2 })}. Puede verla y descargarla aquí:\n${pdfUrl}`
+                                                    );
+                                                    return cleanPhone ? (
+                                                        <a
+                                                            href={`https://wa.me/${cleanPhone}?text=${msg}`}
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                            onClick={(e) => e.stopPropagation()}
+                                                            title="Enviar factura por WhatsApp"
+                                                            className="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-2.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-emerald-700 transition-colors"
+                                                        >
+                                                            <span>WhatsApp</span>
+                                                        </a>
+                                                    ) : null;
+                                                })()}
+                                                <a
+                                                    href={route('facturas.pdf', v.id)}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className="rounded-lg border border-outline-variant bg-white px-3 py-1.5 text-xs font-semibold text-on-surface hover:bg-surface-container-low"
+                                                >
+                                                    Ver PDF
+                                                </a>
+                                                <PrintWindowsTicket ventaId={v.id} />
+                                            </div>
                                         </td>
                                     </tr>,
                                     isOpen ? (

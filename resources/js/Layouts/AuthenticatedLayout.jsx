@@ -26,6 +26,7 @@ export default function AuthenticatedLayout({ header, children }) {
             { label: 'Compras', icon: 'compras', routeName: 'compras.index', href: route('compras.index'), permiso: 'compras.ver' },
             { label: 'Ventas (detalle)', icon: 'ventas', routeName: 'ventas.pos', href: route('ventas.pos'), permiso: 'ventas.ver' },
             { label: 'Ventas al por mayor', icon: 'ventas_mayor', routeName: 'ventas.mayor', href: route('ventas.mayor'), permiso: 'ventas.ver' },
+            { label: 'Apartados', icon: 'apartados', routeName: 'apartados.index', href: route('apartados.index'), permiso: 'ventas.ver' },
             { label: 'Facturas', icon: 'facturas', routeName: 'facturas.index', href: route('facturas.index'), permiso: 'facturas.ver' },
             { label: 'Financiamientos', icon: 'financiamientos', routeName: 'financiamientos.index', href: route('financiamientos.index'), permiso: 'financiamientos.ver' },
             { label: 'Cobros', icon: 'cobros', routeName: 'cobros.index', href: route('cobros.index'), permiso: 'cobros.ver' },

@@ -71,5 +71,35 @@ class InventarioService
             ]);
         });
     }
-}
 
+    public function devolucionPorCancelacionVenta(
+        int $sucursalId,
+        int $almacenId,
+        int $productoId,
+        float $cantidad,
+        int $ventaId,
+        string $motivo = 'Cancelación de apartado'
+    ): void {
+        DB::transaction(function () use ($sucursalId, $almacenId, $productoId, $cantidad, $ventaId, $motivo) {
+            $stock = StockProducto::query()->firstOrCreate(
+                ['almacen_id' => $almacenId, 'producto_id' => $productoId],
+                ['stock' => 0, 'stock_minimo' => 0],
+            );
+
+            $stock->stock = (float) $stock->stock + $cantidad;
+            $stock->save();
+
+            MovimientoInventario::create([
+                'sucursal_id' => $sucursalId,
+                'almacen_id' => $almacenId,
+                'producto_id' => $productoId,
+                'tipo' => 'entrada',
+                'cantidad' => $cantidad,
+                'saldo' => (float) $stock->stock,
+                'referencia_tipo' => 'cancelacion_venta',
+                'referencia_id' => $ventaId,
+                'nota' => $motivo,
+            ]);
+        });
+    }
+}
